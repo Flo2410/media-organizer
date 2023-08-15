@@ -2,10 +2,11 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 // use tauri::Manager;
+mod file_handler;
 
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![greet])
+    .invoke_handler(tauri::generate_handler![file_handler::select_folder])
     // Open DevTools on startup
     // .setup(|app| {
     //   #[cfg(debug_assertions)] // only include this code on debug builds
@@ -17,9 +18,4 @@ fn main() {
     // })
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
-}
-
-#[tauri::command]
-fn greet(name: &str) -> String {
-  format!("Hello, {}!", name)
 }
