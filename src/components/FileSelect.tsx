@@ -1,7 +1,6 @@
 "use client";
 
 import { MouseEvent, useState } from "react";
-import { videoDir } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/api/dialog";
 import { invoke } from "@tauri-apps/api/tauri";
 
@@ -14,6 +13,8 @@ export const FileSelect = () => {
   };
 
   const openFolder = async () => {
+    const { videoDir } = await import("@tauri-apps/api/path");
+
     // Open a selection dialog for directories
     const selected = await open({
       directory: true,

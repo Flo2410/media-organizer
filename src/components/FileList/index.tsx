@@ -1,11 +1,19 @@
 "use client";
 
-import { appWindow } from "@tauri-apps/api/window";
+import { useEffect } from "react";
 
 export const FileList = () => {
-  appWindow.listen("filelist_update", (e) => {
-    console.log(e.payload);
-  });
+  useEffect(() => {
+    const load = async () => {
+      const { appWindow } = await import("@tauri-apps/api/window");
+
+      appWindow.listen("filelist_update", (e) => {
+        console.log(e.payload);
+      });
+    };
+
+    load();
+  }, []);
 
   return <div>FileList</div>;
 };
