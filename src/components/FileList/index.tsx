@@ -2,6 +2,8 @@
 
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
+import { FileListItem } from "./FileListItem";
+import { ScrollArea } from "@components/ui/scroll-area";
 
 export const FileList = () => {
   const [files, setFiles] = useState<string[]>([]);
@@ -20,10 +22,12 @@ export const FileList = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      {files.map((file) => (
-        <div key={nanoid()}>{file}</div>
-      ))}
-    </div>
+    <ScrollArea className="rounded-md border">
+      <ol className="p-4">
+        {files.map((file) => (
+          <FileListItem key={nanoid()} file_path={file} />
+        ))}
+      </ol>
+    </ScrollArea>
   );
 };

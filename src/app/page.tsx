@@ -3,7 +3,7 @@ import { FileList } from "@components/FileList";
 
 export default function Home() {
   return (
-    <div className="p-2">
+    <div className="flex h-screen flex-col p-2">
       <FileSelect />
       <FileList />
     </div>
